@@ -1,0 +1,3 @@
+all:
+    g++ main.cpp Ship.cpp Projectiles.cpp Enemies.cpp Hitbox.cpp Powerups.cpp Asteroids.cpp Collision.cpp Game.cpp ScreenPoints.cpp -o main -Isrc/include -Lsrc/lib -lmingw32 -lSDL2main -lSDL2
+
