@@ -1,7 +1,7 @@
 #include "ScreenPoints.h"
 int bigSide = 30;
 int smallSide = 6;
-
+//the numbers functions generates the correct segments and render them
 void Zero(SDL_Renderer* renderer, int xBase, int yBase){
     SDL_Rect top { xBase , yBase , bigSide , smallSide};
     SDL_Rect bottom { xBase , yBase + 60  , bigSide , smallSide};
@@ -152,8 +152,8 @@ void Nine(SDL_Renderer* renderer, int xBase, int yBase){
 
 
 void createNum(int xBase, int yBase, int points, SDL_Renderer* renderer){
-    std::vector<int> nums; //array where contain all the digits
-    if(points > 99){
+    std::vector<int> nums; //array to contain all the digits
+    if(points > 99){// selecting the digits
         int a = points % 100;
         points = points/100;
         nums.push_back(a);
@@ -166,7 +166,7 @@ void createNum(int xBase, int yBase, int points, SDL_Renderer* renderer){
     int c = points;
     nums.push_back(c);
 
-    for (int i = nums.size()-1; i >= 0; i--) {
+    for (int i = nums.size()-1; i >= 0; i--) { //select the correct number to display
         switch (nums[i]) {
             case 0:
                 Zero(renderer, xBase, yBase);
