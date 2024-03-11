@@ -1,3 +1,37 @@
-all:
-    g++ main.cpp Ship.cpp Projectiles.cpp Enemies.cpp Hitbox.cpp Powerups.cpp Asteroids.cpp Collision.cpp Game.cpp ScreenPoints.cpp -o main -Isrc/include -Lsrc/lib -lmingw32 -lSDL2main -lSDL2
+# Compiler
+CC = g++
 
+# Compiler flags
+CFLAGS = -Isrc/include
+
+# Linker flags
+LKFLAGS = -Lsrc/lib -lmingw32 -lSDL2main -lSDL2
+
+# Source files
+SRCS = main.cpp Ship.cpp Projectiles.cpp Enemies.cpp Hitbox.cpp Powerups.cpp Asteroids.cpp Collision.cpp Game.cpp ScreenPoints.cpp
+
+# Object files
+OBJS = $(SRCS:.cpp=.o)
+
+# Executable name
+TARGET = main
+
+# Compile and link
+$(TARGET): $(OBJS)
+	@echo "Creating executable ..."
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LKFLAGS)
+
+# Compile source files
+%.o: %.cpp #what i want ($@(automatic target)) : prerequisite ($< ( this indicate the first prerequisite)) % is needed to indicate "any of this type"
+	@echo "Creating the object file ..."
+	$(CC) $(CFLAGS) -c $< -o $@ 
+
+# Clean up
+clean:
+	@echo "Cleaning up the object files ..."
+	del $(OBJS) $(TARGET)
+
+#to run the game
+run:
+	@echo "Running the Game..."
+	@./main.exe
