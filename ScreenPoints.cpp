@@ -153,20 +153,16 @@ void Nine(SDL_Renderer* renderer, int xBase, int yBase){
 
 void createNum(int xBase, int yBase, int points, SDL_Renderer* renderer){
     std::vector<int> nums; //array to contain all the digits
-    if(points > 99){// selecting the digits
-        int a = points % 100;
-        points = points/100;
-        nums.push_back(a);
+    if(points > 0){ // to ensure errors int the for loop
+        while(points > 0){//store the digits in the vecto rin reverse order
+            nums.push_back((points % 10));
+            points = (points/10);
+        }
+    }else{
+        nums.push_back(0); // limit case
     }
-    if(points > 9){
-        int b = points % 10;
-        points = points/10;
-        nums.push_back(b);
-    }
-    int c = points;
-    nums.push_back(c);
-
-    for (int i = nums.size()-1; i >= 0; i--) { //select the correct number to display
+    
+    for (int i = (nums.size()-1); i >= 0 ; i--) {//print the digits ( in th eright order)
         switch (nums[i]) {
             case 0:
                 Zero(renderer, xBase, yBase);
